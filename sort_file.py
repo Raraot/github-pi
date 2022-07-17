@@ -73,8 +73,7 @@ def folder_processing_logic(path_from_argv):
                 else:
                     pathlib.Path(unknow_p).mkdir(parents=True, exist_ok=True)
                     # el.replace(unknow_p / normalize(el.name))
-                    shutil.move(el.absolute(), unknow_p)
-      
+                    shutil.move(el.absolute(), unknow_p)   
     else:
         print(f"{path.absolute()} - такий шлях не існує")
 
@@ -86,11 +85,14 @@ def delete_other_dir(path_from_argv):
                 if i.name in ignore_list:
                     continue
                 else:
-                    i.rmdir()
+                    try:
+                        i.rmdir()
+                    except OSError:
+                        continue
+                        # shutil.rmtree(i)
 
 def unp_archives(archives_p):
     path = Path(archives_p)
-    
     for n in path.iterdir():
         try:
             index = n.name.index('.')
@@ -101,7 +103,6 @@ def unp_archives(archives_p):
             continue
 
 def zvit(path_from_argv):
-
     video_list = []
     doc_list = []
     audio_list = []
@@ -144,8 +145,6 @@ def zvit(path_from_argv):
                 un_list.append(i.name)
                 list_u.append(i.name.split(".")[-1])
 
-
-
     print("\n"+"_"*63+"\n\n"+"        welcome to homemade parser"+"\n"+"_"*63+"\n")
     print(f"Video files: {video_list}")
     print(f"Documents files: {doc_list}")
@@ -159,8 +158,6 @@ def zvit(path_from_argv):
     print("_"*63+"\n\n")
 
     
-
-
 try:
     path_from_argv = sys.argv[1]
 except IndexError:
@@ -175,10 +172,8 @@ documents_p = path / 'documents'
 archives_p = path / 'archives'
 unknow_p = path / 'unknow'
 
-
 folder_processing_logic(path_from_argv)                 # запуск функції сортування файлів
 delete_other_dir(path_from_argv)                        # запуск функції видалення пустих зайвих папок
 unp_archives(archives_p)                                # запуск функції розархівування архівів в папці з архівами
 zvit(path_from_argv)                                    # формування звіту в консоль
-
 
