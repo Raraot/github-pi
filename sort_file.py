@@ -81,14 +81,14 @@ def delete_other_dir(path_from_argv):
     path = pathlib.Path(path_from_argv)
     ignore_list = ['archives', 'video', 'audio', 'documents', 'images', 'unknow', 'python_files']
     for i in path.iterdir():
-            if i.is_dir():
-                if i.name in ignore_list:
-                    continue
-                else:
-                    try:
-                        i.rmdir()
-                    except OSError:
-                        shutil.rmtree(i)
+        if i.is_dir():
+            if i.name in ignore_list:
+                continue
+            else:
+                try:
+                    i.rmdir()
+                except OSError:
+                    shutil.rmtree(i)
 
 def unp_archives(archives_p):
     path = Path(archives_p)
