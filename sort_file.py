@@ -88,8 +88,7 @@ def delete_other_dir(path_from_argv):
                     try:
                         i.rmdir()
                     except OSError:
-                        continue
-                        # shutil.rmtree(i)
+                        shutil.rmtree(i)
 
 def unp_archives(archives_p):
     path = Path(archives_p)
