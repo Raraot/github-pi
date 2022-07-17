@@ -119,6 +119,3 @@ unknow_p = path / 'unknow'
 folder_processing_logic(path_from_argv)                 # запуск функції сортування файлів
 delete_other_dir(path_from_argv)                        # запуск функції видалення пустих зайвих папок
 unp_archives(archives_p)                                # запуск функції розархівування архівів в папці з архівами
-
-
-
