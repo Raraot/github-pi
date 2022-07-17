@@ -109,33 +109,44 @@ def zvit(path_from_argv):
     images_list = []
     py_list = []
     un_list = []
+    list_k = []
+    list_u = []
     path = Path(path_from_argv)
     for n in path.iterdir():
         if n.name == "video":
             for i in n.iterdir():
                 video_list.append(i.name)
+                list_k.append(i.name.split(".")[-1])
         elif n.name == "documents":
             for i in n.iterdir():
                 doc_list.append(i.name)
+                list_k.append(i.name.split(".")[-1])
         elif n.name == "archives":
             for i in n.iterdir():
+                if i.iterdir():
+                    continue
                 archive_list.append(i.name)
+                list_k.append(i.name.split(".")[-1])
         elif n.name == "images":
             for i in n.iterdir():
                 images_list.append(i.name)
+                list_k.append(i.name.split(".")[-1])
         elif n.name == "documents":
             for i in n.iterdir():
                 doc_list.append(i.name)
+                list_k.append(i.name.split(".")[-1])
         elif n.name == "python_files":
             for i in n.iterdir():
                 py_list.append(i.name)
+                list_k.append(i.name.split(".")[-1])
         elif n.name == "unknow":
             for i in n.iterdir():
                 un_list.append(i.name)
+                list_u.append(i.name.split(".")[-1])
 
 
 
-    print("\n"+"_"*63+"\n")
+    print("\n"+"_"*63+"\n\n"+"        welcome to homemade parser"+"\n"+"_"*63+"\n")
     print(f"Video files: {video_list}")
     print(f"Documents files: {doc_list}")
     print(f"Python files: {py_list}")
@@ -143,12 +154,10 @@ def zvit(path_from_argv):
     print(f"Image files: {images_list}")
     print(f"Archives files: {doc_list}")
     print(f"Unknown files: {un_list}")
+    print(f"Notable extensions: {list_k}")
+    print(f"Unknown extensions: {list_u}")
 
     
-
-#     Список файлов в каждой категории (музыка, видео, фото и пр.)
-# ·       Перечень всех известных скрипту расширений, которые встречаются в целевой папке.
-# ·       Перечень всех расширений, которые скрипту неизвестны.»
 
 try:
     path_from_argv = sys.argv[1]
