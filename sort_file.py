@@ -100,6 +100,55 @@ def unp_archives(archives_p):
         except:
             continue
 
+def zvit(path_from_argv):
+
+    video_list = []
+    doc_list = []
+    audio_list = []
+    archive_list = []
+    images_list = []
+    py_list = []
+    un_list = []
+    path = Path(path_from_argv)
+    for n in path.iterdir():
+        if n.name == "video":
+            for i in n.iterdir():
+                video_list.append(i.name)
+        elif n.name == "documents":
+            for i in n.iterdir():
+                doc_list.append(i.name)
+        elif n.name == "archives":
+            for i in n.iterdir():
+                archive_list.append(i.name)
+        elif n.name == "images":
+            for i in n.iterdir():
+                images_list.append(i.name)
+        elif n.name == "documents":
+            for i in n.iterdir():
+                doc_list.append(i.name)
+        elif n.name == "python_files":
+            for i in n.iterdir():
+                py_list.append(i.name)
+        elif n.name == "unknow":
+            for i in n.iterdir():
+                un_list.append(i.name)
+
+
+
+    print("\n"+"_"*63+"\n")
+    print(f"Video files: {video_list}")
+    print(f"Documents files: {doc_list}")
+    print(f"Python files: {py_list}")
+    print(f"Audio files: {audio_list}")
+    print(f"Image files: {images_list}")
+    print(f"Archives files: {doc_list}")
+    print(f"Unknown files: {un_list}")
+
+    
+
+#     Список файлов в каждой категории (музыка, видео, фото и пр.)
+# ·       Перечень всех известных скрипту расширений, которые встречаются в целевой папке.
+# ·       Перечень всех расширений, которые скрипту неизвестны.»
 
 try:
     path_from_argv = sys.argv[1]
@@ -119,3 +168,8 @@ unknow_p = path / 'unknow'
 folder_processing_logic(path_from_argv)                 # запуск функції сортування файлів
 delete_other_dir(path_from_argv)                        # запуск функції видалення пустих зайвих папок
 unp_archives(archives_p)                                # запуск функції розархівування архівів в папці з архівами
+zvit(path_from_argv)
+
+
+
+# python3 sort_file.py /Users/suprunetsvladymyr/Desktop/Projects/py_test/222/333
