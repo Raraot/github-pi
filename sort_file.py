@@ -123,7 +123,7 @@ def zvit(path_from_argv):
                 list_k.append(i.name.split(".")[-1])
         elif n.name == "archives":
             for i in n.iterdir():
-                if i.iterdir():
+                if i.is_dir():
                     continue
                 archive_list.append(i.name)
                 list_k.append(i.name.split(".")[-1])
@@ -152,12 +152,14 @@ def zvit(path_from_argv):
     print(f"Python files: {py_list}")
     print(f"Audio files: {audio_list}")
     print(f"Image files: {images_list}")
-    print(f"Archives files: {doc_list}")
+    print(f"Archives files: {archive_list}")
     print(f"Unknown files: {un_list}")
-    print(f"Notable extensions: {list_k}")
+    print(f"\nNotable extensions: {list_k}")
     print(f"Unknown extensions: {list_u}")
+    print("_"*63+"\n\n")
 
     
+
 
 try:
     path_from_argv = sys.argv[1]
@@ -177,8 +179,6 @@ unknow_p = path / 'unknow'
 folder_processing_logic(path_from_argv)                 # запуск функції сортування файлів
 delete_other_dir(path_from_argv)                        # запуск функції видалення пустих зайвих папок
 unp_archives(archives_p)                                # запуск функції розархівування архівів в папці з архівами
-zvit(path_from_argv)
+zvit(path_from_argv)                                    # формування звіту в консоль
 
 
-
-# python3 sort_file.py /Users/suprunetsvladymyr/Desktop/Projects/py_test/222/333
